@@ -1,4 +1,3 @@
-
 import os
 import tkinter as tk
 from tkinter import ttk
@@ -7,7 +6,6 @@ from tkinter import ttk
 class App(tk.Tk) :
     def __init__(self) :
         super().__init__()
-        self.title("envCreate")
         self.geometry("370x100")
         self.resizable(False, False)
 
@@ -28,6 +26,7 @@ class App(tk.Tk) :
         self.btn2 = ttk.Button(master=self)
         self.btn2.configure(text="crear", command=self.crear)
         self.btn2.place(x=260, y=60)
+
 
     def avilitar(self) :
         estado = self.var.get()
@@ -74,7 +73,7 @@ class App(tk.Tk) :
             self.ent.place(x=75, y=240)
 
             self.btn3 = ttk.Button(master=self)
-            self.btn3.configure(text="--help", command=ayuda)
+            self.btn3.configure(text="--help", command=self.ayuda)
             self.btn3.place(x=130, y=275)
 
 
@@ -83,8 +82,23 @@ class App(tk.Tk) :
 
 
 
+
     def crear(self) :
-        pass
+        estado = self.var.get()
+        if estado == False :
+            b = self.ent2.get()
+            c = os.getcwd()
+            d = c + "/" + b
+            os.system("python3 -m venv " + d)
+
+        else :
+            a = self.ent.get()
+            b = self.ent2.get()
+            c = os.getcwd()
+            d = c + "/" + b
+            os.system("python3 -m venv " + d + " " + a)
+           
+            
 
     def syms(self) :
         self.ent.insert(tk.END, "--system-site-packages ")
@@ -103,8 +117,8 @@ class App(tk.Tk) :
     def updeps(self) :
         self.ent.insert(tk.END, "--upgrade-deps ")
         
-def ayuda() :
-    os.system("python3 -m venv --h")
+    def ayuda(self) :
+        os.system("python3 -m venv --h")
 
 
 if __name__ == "__main__" :
