@@ -7,6 +7,7 @@ from tkinter import ttk
 class App(tk.Tk) :
     def __init__(self) :
         super().__init__()
+        self.title("envCreate")
         self.geometry("370x100")
         self.resizable(False, False)
 
